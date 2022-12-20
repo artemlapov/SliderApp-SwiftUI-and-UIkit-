@@ -20,7 +20,7 @@ struct ContentView: View {
                 .padding()
 
             VStack {
-                CustomSlider(value: $currentValue, thumbOpacity: $thumbOpacity)
+                CustomSlider(currentValue: $currentValue, thumbOpacity: $thumbOpacity)
                 HStack {
                     Text("0")
                     Spacer()

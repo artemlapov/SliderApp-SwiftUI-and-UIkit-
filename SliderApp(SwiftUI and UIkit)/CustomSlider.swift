@@ -10,7 +10,7 @@ import SwiftUI
 
 struct CustomSlider: UIViewRepresentable {
 
-    @Binding var value: Double
+    @Binding var currentValue: Double
     @Binding var thumbOpacity: Double
 
     func makeUIView(context: Context) -> UISlider {
@@ -24,21 +24,21 @@ struct CustomSlider: UIViewRepresentable {
     }
 
     func updateUIView(_ uiView: UISlider, context: Context) {
-        uiView.value = Float(value)
+        uiView.value = Float(currentValue)
     }
     
     func makeCoordinator() -> Coordinator {
-        Coordinator(value: $value, thumbOpacity: $thumbOpacity)
+        Coordinator(currentValue: $currentValue, thumbOpacity: $thumbOpacity)
     }
 }
 
 extension CustomSlider {
     class Coordinator: NSObject {
-        @Binding var value: Double
+        @Binding var currentValue: Double
         @Binding var thumbOpacity: Double
 
-        init(value: Binding<Double>, thumbOpacity: Binding<Double>) {
-            self._value = value
+        init(currentValue: Binding<Double>, thumbOpacity: Binding<Double>) {
+            self._currentValue = currentValue
             self._thumbOpacity = thumbOpacity
         }
 
@@ -47,6 +47,6 @@ extension CustomSlider {
 
 struct CustomSlider_Previews: PreviewProvider {
     static var previews: some View {
-        CustomSlider(value: .constant(0.5), thumbOpacity: .constant(0.5))
+        CustomSlider(currentValue: .constant(50), thumbOpacity: .constant(0.5))
     }
 }
