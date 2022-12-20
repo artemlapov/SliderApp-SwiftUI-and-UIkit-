@@ -30,6 +30,12 @@ struct ContentView: View {
             Button("Reset") { targetValue = Int.random(in: 0...100) }
                 .buttonStyle(.bordered)
                 .foregroundColor(.red)
+            HStack {
+                Text("0")
+                Spacer()
+                Text("100")
+            }
+            .padding()
         }
 
     }
