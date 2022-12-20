@@ -11,7 +11,7 @@ struct ContentView: View {
     @State private var currentValue = 0.0
     @State private var showAlert = false
     @State private var targetValue = Int.random(in: 0...100)
-    @State private var thumbOpacity = 1.0
+    @State private var thumbOpacity = 0.5
     private lazy var score = computeScore()
 
     var body: some View {
@@ -19,7 +19,16 @@ struct ContentView: View {
             Text("Подвиньте слайдер как можно ближе к \(targetValue)")
                 .padding()
 
-            CustomSlider(value: $currentValue, thumbOpacity: $thumbOpacity)
+            VStack {
+                CustomSlider(value: $currentValue, thumbOpacity: $thumbOpacity)
+                HStack {
+                    Text("0")
+                    Spacer()
+                    Text("100")
+                }
+            }
+            .padding()
+
 
             Button("Check me") { showAlert.toggle() }
                 .alert(
@@ -32,12 +41,6 @@ struct ContentView: View {
             Button("Reset") { targetValue = Int.random(in: 0...100) }
                 .buttonStyle(.bordered)
                 .foregroundColor(.red)
-            HStack {
-                Text("0")
-                Spacer()
-                Text("100")
-            }
-            .padding()
         }
 
     }
