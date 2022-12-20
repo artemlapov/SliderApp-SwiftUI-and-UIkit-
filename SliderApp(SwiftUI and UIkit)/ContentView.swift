@@ -16,7 +16,7 @@ struct ContentView: View {
 
     var body: some View {
         VStack {
-            Text("Подвиньте слайдер как можно ближе к \(targetValue)")
+            Text("Looking for the truth (around \(targetValue))")
                 .padding()
 
             VStack {
@@ -33,9 +33,10 @@ struct ContentView: View {
             Button("Check me") { showAlert.toggle() }
                 .alert(
                     "Your score is \(computeScore())",
-                    isPresented: $showAlert,
-                    actions: {}
-                )
+                    isPresented: $showAlert) {
+                        Button("Ok",
+                               action: { targetValue = Int.random(in: 0...100) } )
+                    }
                 .buttonStyle(.bordered)
                 .padding()
             Button("Reset") { targetValue = Int.random(in: 0...100) }
@@ -51,6 +52,7 @@ struct ContentView: View {
     }
 
 }
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
