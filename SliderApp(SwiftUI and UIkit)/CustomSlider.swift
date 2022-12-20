@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 struct CustomSlider: UIViewRepresentable {
 
     @Binding var value: Double

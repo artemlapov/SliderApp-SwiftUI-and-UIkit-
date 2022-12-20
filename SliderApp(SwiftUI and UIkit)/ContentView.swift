@@ -11,13 +11,15 @@ struct ContentView: View {
     @State private var currentValue = 0.0
     @State private var showAlert = false
     @State private var targetValue = Int.random(in: 0...100)
+    @State private var thumbOpacity = 1.0
     private lazy var score = computeScore()
-    private var sliderOpacity = 1.0
 
     var body: some View {
         VStack {
             Text("Подвиньте слайдер как можно ближе к \(targetValue)")
                 .padding()
+
+            CustomSlider(value: $currentValue, thumbOpacity: $thumbOpacity)
 
             Button("Check me") { showAlert.toggle() }
                 .alert(
